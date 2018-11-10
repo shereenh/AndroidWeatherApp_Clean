@@ -10,7 +10,7 @@ public class WeatherEntity {
 
     private City city;
     private String cod;
-    private float message;
+    private String message;
     private int cnt;
     private InfoList[] list;
 
@@ -22,7 +22,7 @@ public class WeatherEntity {
         return cod;
     }
 
-    public float getMessage() {
+    public String getMessage() {
         return message;
     }
 
@@ -53,7 +53,7 @@ public class WeatherEntity {
         this.cod = cod;
     }
 
-    public void setMessage(float message) {
+    public void setMessage(String message) {
         this.message = message;
     }
 

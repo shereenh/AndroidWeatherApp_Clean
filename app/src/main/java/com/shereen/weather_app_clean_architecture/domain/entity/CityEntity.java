@@ -3,7 +3,6 @@ package com.shereen.weather_app_clean_architecture.domain.entity;
 import io.realm.RealmList;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
-import io.realm.annotations.Required;
 
 /**
  * Created by shereen on 11/9/18
@@ -16,7 +15,6 @@ public class CityEntity extends RealmObject {
     private String city;
     private String country;
     private int dayTimeCount;
-    private String tester;
 
     RealmList<DayEntity> dayEntityList;
 
@@ -67,13 +65,5 @@ public class CityEntity extends RealmObject {
 
     public void setDayEntityList(RealmList<DayEntity> dayEntityList) {
         this.dayEntityList = dayEntityList;
-    }
-
-    public String getTester() {
-        return tester;
-    }
-
-    public void setTester(String tester) {
-        this.tester = tester;
     }
 }

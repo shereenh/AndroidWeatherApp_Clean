@@ -83,6 +83,8 @@ public class CityFragment extends BaseFragment {
     }
 
 
+
+
     @Override
     public void doAttach(Context context) {
         realm = Realm.getDefaultInstance();

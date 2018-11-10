@@ -13,9 +13,23 @@
         android:layout_height="@dimen/smallHeight"
         android:background="@color/colorPrimaryDark"/>
 
+    <TextView
+        android:id="@+id/lastUpdated"
+        android:layout_below="@id/topFrame"
+        android:paddingBottom="2dp"
+        android:paddingEnd="10dp"
+        android:paddingTop="2dp"
+        android:background="@color/colorPrimaryDark"
+        android:layout_width="match_parent"
+        android:gravity="end"
+        android:layout_height="wrap_content"
+        android:textSize="10sp"
+        android:textColor="@android:color/white"
+        android:text="Last updated"/>
+
     <View
         android:id="@+id/divider"
-        android:layout_below="@id/topFrame"
+        android:layout_below="@id/lastUpdated"
         android:layout_width="match_parent"
         android:layout_height="@dimen/line"
         android:background="@color/colorAccent"/>

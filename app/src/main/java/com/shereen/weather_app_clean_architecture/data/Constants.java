@@ -17,6 +17,6 @@ public class Constants {
 
 
     //realm
-    public static final String REALM_FILE_NAME = "weatherr.realm";
+    public static final String REALM_FILE_NAME = "wea.realm";
 
 }

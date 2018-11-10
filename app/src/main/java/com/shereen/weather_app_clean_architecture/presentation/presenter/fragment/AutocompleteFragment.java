@@ -34,6 +34,8 @@ public class AutocompleteFragment extends BaseFragment {
     View rootView;
     AutoCompleteTextView editCity;
     private final String INTERNET_MESSAGE = "Please check internet connectivity";
+    private final String EMPTY_MESSAGE = "Please enter a city";
+    private final String OTHER_MESSAGE = "Something went wrong. Please try again later.";
 
     ImageButton getWeather;
 
@@ -125,14 +127,22 @@ public class AutocompleteFragment extends BaseFragment {
 
             boolean connected = false;
 
-            if(mListener!=null){
-                connected = mListener.getConnected();
-            }
 
-            if(mListener!=null && connected){
-                mListener.fromAutoFrag(editCity.getText().toString());
+            if(editCity.getText().toString().equals("")){
+
+                Toast.makeText(getActivity(), EMPTY_MESSAGE, Toast.LENGTH_SHORT).show();
+
+            }else if(mListener!=null){
+
+                connected = mListener.getConnected();
+                if(!connected){
+                    Toast.makeText(getActivity(), INTERNET_MESSAGE, Toast.LENGTH_SHORT).show();
+                }else{
+                    mListener.fromAutoFrag(editCity.getText().toString());
+                }
+
             }else{
-                Toast.makeText(getActivity(), INTERNET_MESSAGE, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), OTHER_MESSAGE, Toast.LENGTH_SHORT).show();
             }
 
             InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);

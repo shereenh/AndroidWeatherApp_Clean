@@ -6,12 +6,19 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.TextView;
+
+import com.shereen.weather_app_clean_architecture.R;
+import com.shereen.weather_app_clean_architecture.domain.entity.HolderEntity;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.ButterKnife;
+import io.realm.Realm;
+import io.realm.RealmModel;
+import io.realm.RealmObject;
 
 /**
  * Created by shereen on 11/8/18
@@ -32,8 +39,8 @@ public abstract class BaseActivity extends AppCompatActivity {
         setContentView(getContentLayout());
         ButterKnife.bind(this);
         initComponents();
-
         startFragments();
+
     }
 
     public List<String> getMyCities(){

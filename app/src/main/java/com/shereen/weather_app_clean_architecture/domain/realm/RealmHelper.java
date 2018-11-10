@@ -1,10 +1,14 @@
 package com.shereen.weather_app_clean_architecture.domain.realm;
 
 import com.shereen.weather_app_clean_architecture.domain.entity.CityEntity;
+import com.shereen.weather_app_clean_architecture.domain.entity.HolderEntity;
 
+import java.sql.Timestamp;
 import java.util.UUID;
 
 import io.realm.Realm;
+import io.realm.RealmModel;
+import io.realm.RealmObject;
 import io.realm.RealmResults;
 
 /**
@@ -24,7 +28,6 @@ public class RealmHelper {
                 savedCity.setCity( cityEntity.getCity());
                 savedCity.setCountry( cityEntity.getCountry() );
                 savedCity.setDayTimeCount( cityEntity.getDayTimeCount() );
-                savedCity.setTester( UUID.randomUUID().toString() );
                 savedCity.setDayEntityList( cityEntity.getDayEntityList());
                 realm.insertOrUpdate(savedCity);
             }
@@ -44,6 +47,22 @@ public class RealmHelper {
                     System.out.println("-->>m "+city.getCityId()+" "+city.getCity()+" "+val);
 
                 }
+            }
+        });
+
+    }
+
+    public static void saveTime(){
+
+        Realm.getDefaultInstance().executeTransaction(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+
+                String now = (new Timestamp(System.currentTimeMillis())).toString();
+                HolderEntity holderEntity = new HolderEntity();
+                holderEntity.setId("1234");
+                holderEntity.setLastRefreshed(now);
+                realm.insertOrUpdate(holderEntity);
             }
         });
 

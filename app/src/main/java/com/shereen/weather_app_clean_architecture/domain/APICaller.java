@@ -23,6 +23,7 @@ public class APICaller {
 
     private static final String TAG = APICaller.class.getSimpleName();
     private Realm realm;
+    String returnResult ="";
 
 
     public APICaller(){
@@ -48,6 +49,7 @@ public class APICaller {
                                 Log.i(TAG, "RxJava2: Response from server for toplevel ...");
                                 //recyclerAdapter.setGitHubRepos(gitHubRepos);
                                 System.out.println("result from call: "+gitHubRepos.getMessage()+" "+gitHubRepos.getCity().getName());
+
                             }
                         },
                         new Consumer<Throwable>() {
@@ -76,7 +78,7 @@ public class APICaller {
                             public void accept(WeatherEntity weatherEntity) throws Exception {
                                 Log.i(TAG, "RxJava2: Response from server for toplevel ...");
                                 System.out.println("result from call: "+weatherEntity.getMessage()+" "+weatherEntity.getCity().getName());
-                                saveToDatabase(weatherEntity);
+                                checkForFaults(weatherEntity);
                             }
                         },
                         new Consumer<Throwable>() {
@@ -87,6 +89,18 @@ public class APICaller {
                         }
 
                 );
+    }
+
+    public void checkForFaults(WeatherEntity weatherEntity){
+
+
+        if(weatherEntity.getCod().equals("202")){
+            saveToDatabase(weatherEntity);
+            returnResult = "OK";
+        }else{
+            returnResult = weatherEntity.getMessage();
+        }
+
     }
 
     public void saveToDatabase(WeatherEntity weatherEntity){
@@ -104,4 +118,6 @@ public class APICaller {
 
         }
     }
+
+
 }

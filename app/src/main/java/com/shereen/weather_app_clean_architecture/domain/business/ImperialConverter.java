@@ -1,8 +1,5 @@
 package com.shereen.weather_app_clean_architecture.domain.business;
 
-import com.shereen.weather_app_clean_architecture.data.entity.WeatherEntity;
-import com.shereen.weather_app_clean_architecture.presentation.model.WeatherPresEntity;
-
 /**
  * Created by shereen on 11/8/18
  */

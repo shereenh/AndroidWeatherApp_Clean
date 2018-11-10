@@ -64,8 +64,6 @@ public class DayFragment extends BaseFragment {
     public void displayThisInformation(int cityId){
 
         realm = Realm.getDefaultInstance();
-        //dayEntities = realm.where(DayEntity.class).contains("cityId",Integer.toString(cityId)).findAll();
-        //dayEntites = realm.where(DayEntity.class).equals("cityId", new Integer(cityId)).findAll();
         dayEntities = realm.where(DayEntity.class).equalTo("cityId",new Integer(cityId)).findAll();
 
         for(DayEntity day: dayEntities){

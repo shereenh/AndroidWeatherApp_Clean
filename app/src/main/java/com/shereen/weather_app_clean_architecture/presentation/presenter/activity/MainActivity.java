@@ -2,19 +2,25 @@ package com.shereen.weather_app_clean_architecture.presentation.presenter.activi
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.shereen.weather_app_clean_architecture.R;
 import com.shereen.weather_app_clean_architecture.domain.APICaller;
 import com.shereen.weather_app_clean_architecture.domain.entity.CityEntity;
+import com.shereen.weather_app_clean_architecture.domain.entity.HolderEntity;
+import com.shereen.weather_app_clean_architecture.domain.realm.RealmHelper;
 import com.shereen.weather_app_clean_architecture.presentation.presenter.fragment.AutocompleteFragment;
 import com.shereen.weather_app_clean_architecture.presentation.presenter.fragment.CityFragment;
 import com.shereen.weather_app_clean_architecture.presentation.presenter.fragment.DayFragment;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
 import io.realm.Realm;
+import io.realm.RealmModel;
+import io.realm.RealmObject;
 import io.realm.RealmResults;
 
 
@@ -47,22 +53,12 @@ public class MainActivity extends BaseActivity implements
     @Override
     public void initComponents() {
 
+        apiCaller = new APICaller();
+
         checkNetwork();
         setUpData();
 
-        apiCaller = new APICaller();
-//        townshipAdapter = new TownshipAdapter();
-//        recycler.setLayoutManager(new GridLayoutManager(this,2));
-//        recycler.setAdapter(townshipAdapter);
-//        townshipModelMapper = new TownshipModelMapper();
-//        townshipMapper = new TownshipMapper();
-//        townshipCache = new TownshipCacheImpl();
-//        townshipDataStoreFactory = new TownshipDataStoreFactory(townshipCache);
-//        townshipDataRepository = new TownshipDataRepository(townshipDataStoreFactory,townshipMapper);
-//        getTownshipList = new GetTownshipList(townshipDataRepository);
-//        townshipListPresenter = new TownshipListPresenter(getTownshipList,townshipModelMapper);
-//        townshipListPresenter.setTownshipListView(this);
-//        townshipListPresenter.initialize();
+
     }
 
     private void checkNetwork(){
@@ -94,7 +90,33 @@ public class MainActivity extends BaseActivity implements
 
         if(mySavedCities.size()>0){
             setMyCities(mySavedCities);
+
+            //refresh data by calling apis
+            if(isConnectedOnline()){
+                startAPICalls();
+            }
         }
+
+    }
+
+    private void startAPICalls(){
+
+        for(String city: getMyCities()){
+            print("calling for" +city);
+            apiCaller.cityDomainCaller(city);
+        }
+        RealmHelper.saveTime();
+
+        RealmResults<HolderEntity> holders = Realm.getDefaultInstance().where(HolderEntity.class).findAll();
+
+        print("Holder size:" + holders.size());
+        TextView lastUpdated = (TextView) findViewById(R.id.lastUpdated);
+        if(holders.size()==1){
+            lastUpdated.setText("Last updated: " + holders.get(0).getLastRefreshed());
+        }else{
+            lastUpdated.setText("Last updated: ------------------");
+        }
+
     }
 
     @Override

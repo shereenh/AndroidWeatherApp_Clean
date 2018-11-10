@@ -24,11 +24,12 @@ public class DayAdapter extends RealmRecyclerViewAdapter<DayEntity, DayAdapter.M
 
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        public TextView day, min, max,night,eve, morn;
+        public TextView day, min, max,night,eve, morn,dateTime;
 
         public MyViewHolder(View view) {
             super(view);
 
+            dateTime = view.findViewById(R.id.dateTime);
             day = (TextView) view.findViewById(R.id.day);
             min = (TextView) view.findViewById(R.id.min);
             max = (TextView) view.findViewById(R.id.max);
@@ -65,6 +66,7 @@ public class DayAdapter extends RealmRecyclerViewAdapter<DayEntity, DayAdapter.M
         DayEntity dayEntity = dayEntities.get(position);
         System.out.println("ValueL: "+dayEntity.getTempDay());
 
+        holder.dateTime.setText(Integer.toString(dayEntity.getTimeForecast()));
         holder.day.setText( Double.toString(dayEntity.getTempDay()) );
         holder.min.setText(Double.toString(dayEntity.getTempMin()));
         holder.max.setText(Double.toString(dayEntity.getTempMax()));

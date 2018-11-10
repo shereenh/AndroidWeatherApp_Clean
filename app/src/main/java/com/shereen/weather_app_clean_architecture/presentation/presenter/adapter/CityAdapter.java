@@ -27,7 +27,7 @@ public class CityAdapter
 
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        public TextView temp, mainW, press,humidity,speedW, country,city,sunrise,sunset;
+        public TextView temp, mainW, press,humidity,speedW, country,city, minTemp, maxTemp;
         public ImageView icon;
 
         public MyViewHolder(View view) {
@@ -41,8 +41,8 @@ public class CityAdapter
             country = (TextView) view.findViewById(R.id.Country);
             city = (TextView) view.findViewById(R.id.City);
             icon = (ImageView) view.findViewById(R.id.wicon);
-            sunset = (TextView) view.findViewById(R.id.maxTemp);
-            sunrise = (TextView) view.findViewById(R.id.minTemp);
+            maxTemp = (TextView) view.findViewById(R.id.maxTemp);
+            minTemp = (TextView) view.findViewById(R.id.minTemp);
 
         }
     }
@@ -81,8 +81,8 @@ public class CityAdapter
         holder.speedW.setText("Wn: "+Double.toString(dayEntity.getWindSpeed())+" mps");
         holder.country.setText(cityEntity.getCountry());
         holder.city.setText( cityEntity.getCity()+", ");
-        holder.sunrise.setText(Double.toString(dayEntity.getTempMax()));
-        holder.sunset.setText(Double.toString(dayEntity.getTempMax()));
+        holder.minTemp.setText("Min: "+Double.toString(dayEntity.getTempMax()));
+        holder.maxTemp.setText("Max: "+Double.toString(dayEntity.getTempMax()));
         if(wea.toLowerCase().contains("cloud")){
             holder.icon.setImageResource(R.drawable.cloudy);
         }else if(wea.toLowerCase().contains("overcast")){
