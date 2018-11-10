@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.shereen.weather_app_clean_architecture.R;
@@ -24,7 +25,7 @@ import io.realm.RealmResults;
 
 public class DayFragment extends BaseFragment {
 
-    private CityFragment.OnFragmentInteractionListener mListener;
+    private DayFragment.OnFragmentInteractionListener mListener;
     View rootView;
 
     private RecyclerView recyclerView;
@@ -32,6 +33,8 @@ public class DayFragment extends BaseFragment {
 
     //OrderedRealmCollection<CityEntity> cityEntities;
     RealmResults<DayEntity> dayEntities;
+
+    ImageButton changeFragButton;
 
     Realm realm;
 
@@ -47,13 +50,26 @@ public class DayFragment extends BaseFragment {
     public View customOnCreate(LayoutInflater inflater, ViewGroup container,
                                Bundle savedInstanceState) {
 
-        realm = Realm.getDefaultInstance();
         rootView = inflater.inflate(R.layout.fragment_day, container, false);
+        if(mListener != null){
+            mListener.sendTheId();
+        }
 
-        dayEntities = realm.where(DayEntity.class).contains("cityId","ffrfr").findAll();
+        changeFragButton = rootView.findViewById(R.id.changeFrag);
+        changeFragButton.setOnClickListener(new ChangeFragment());
+
+        return rootView;
+    }
+
+    public void displayThisInformation(int cityId){
+
+        realm = Realm.getDefaultInstance();
+        //dayEntities = realm.where(DayEntity.class).contains("cityId",Integer.toString(cityId)).findAll();
+        //dayEntites = realm.where(DayEntity.class).equals("cityId", new Integer(cityId)).findAll();
+        dayEntities = realm.where(DayEntity.class).equalTo("cityId",new Integer(cityId)).findAll();
 
         for(DayEntity day: dayEntities){
-            System.out.println("---> "+day.getCityId()+" "+day.getTempDay());
+            System.out.println("--->d "+day.getCityId()+" "+day.getTempDay());
         }
 
 
@@ -65,7 +81,17 @@ public class DayFragment extends BaseFragment {
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setAdapter(dayAdapter);
 
-        return rootView;
+    }
+
+    class ChangeFragment implements View.OnClickListener{
+
+        @Override
+        public void onClick(View view) {
+            if(mListener !=null){
+                mListener.changeToCityFragment();
+            }
+        }
+
     }
 
 
@@ -73,7 +99,7 @@ public class DayFragment extends BaseFragment {
     public void doAttach(Context context) {
         realm = Realm.getDefaultInstance();
         if (context instanceof CityFragment.OnFragmentInteractionListener) {
-            mListener = (CityFragment.OnFragmentInteractionListener) context;
+            mListener = (OnFragmentInteractionListener) context;
         } else {
             throw new RuntimeException(context.toString()
                     + " must implement OnFragmentInteractionListener");
@@ -93,10 +119,11 @@ public class DayFragment extends BaseFragment {
     }
 
 
-
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         //void onFragmentInteraction(Uri uri);
+        void sendTheId();
+        void changeToCityFragment();
     }
 
 }

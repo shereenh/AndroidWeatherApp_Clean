@@ -12,21 +12,21 @@ public class DayEntity extends RealmObject {
     private int index;
     private int timeForecast;
 
-    private double tempDay;
-    private double tempMin;
-    private double tempMax;
-    private double tempNight;
-    private double tempEve;
-    private double tempMorn;
+    private int tempDay;
+    private int tempMin;
+    private int tempMax;
+    private int tempNight;
+    private int tempEve;
+    private int tempMorn;
 
-    private double pressure;
+    private int pressure;
     private int humidity;
 
     private String weatherMain;
     private String weatherDescription;
 
 
-    private double windSpeed;
+    private int windSpeed;
     private int windDirection;
     private int cloudiness;
 
@@ -54,59 +54,59 @@ public class DayEntity extends RealmObject {
         this.timeForecast = timeForecast;
     }
 
-    public double getTempDay() {
+    public int getTempDay() {
         return tempDay;
     }
 
-    public void setTempDay(double tempDay) {
+    public void setTempDay(int tempDay) {
         this.tempDay = tempDay;
     }
 
-    public double getTempMin() {
+    public int getTempMin() {
         return tempMin;
     }
 
-    public void setTempMin(double tempMin) {
+    public void setTempMin(int tempMin) {
         this.tempMin = tempMin;
     }
 
-    public double getTempMax() {
+    public int getTempMax() {
         return tempMax;
     }
 
-    public void setTempMax(double tempMax) {
+    public void setTempMax(int tempMax) {
         this.tempMax = tempMax;
     }
 
-    public double getTempNight() {
+    public int getTempNight() {
         return tempNight;
     }
 
-    public void setTempNight(double tempNight) {
+    public void setTempNight(int tempNight) {
         this.tempNight = tempNight;
     }
 
-    public double getTempEve() {
+    public int getTempEve() {
         return tempEve;
     }
 
-    public void setTempEve(double tempEve) {
+    public void setTempEve(int tempEve) {
         this.tempEve = tempEve;
     }
 
-    public double getTempMorn() {
+    public int getTempMorn() {
         return tempMorn;
     }
 
-    public void setTempMorn(double tempMorn) {
+    public void setTempMorn(int tempMorn) {
         this.tempMorn = tempMorn;
     }
 
-    public double getPressure() {
+    public int getPressure() {
         return pressure;
     }
 
-    public void setPressure(double pressure) {
+    public void setPressure(int pressure) {
         this.pressure = pressure;
     }
 
@@ -134,11 +134,11 @@ public class DayEntity extends RealmObject {
         this.weatherDescription = weatherDescription;
     }
 
-    public double getWindSpeed() {
+    public int getWindSpeed() {
         return windSpeed;
     }
 
-    public void setWindSpeed(double windSpeed) {
+    public void setWindSpeed(int windSpeed) {
         this.windSpeed = windSpeed;
     }
 

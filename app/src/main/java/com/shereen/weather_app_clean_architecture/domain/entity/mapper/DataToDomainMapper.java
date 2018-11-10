@@ -49,18 +49,18 @@ public class DataToDomainMapper {
 
                 dayEntity.setTimeForecast( old.getDt() );
 
-                dayEntity.setTempDay( old.getTemp().getDay() );
-                dayEntity.setTempMin(0);
-                dayEntity.setTempMax( old.getTemp().getMax() );
-                dayEntity.setTempNight( old.getTemp().getNight() );
-                dayEntity.setTempEve( old.getTemp().getEve() );
-                dayEntity.setTempMorn( old.getTemp().getMorn() );
+                dayEntity.setTempDay( Math.round(old.getTemp().getDay()) );
+                dayEntity.setTempMin( Math.round(old.getTemp().getMin()) );
+                dayEntity.setTempMax( Math.round(old.getTemp().getMax()) );
+                dayEntity.setTempNight( Math.round(old.getTemp().getNight()) );
+                dayEntity.setTempEve( Math.round(old.getTemp().getEve()) );
+                dayEntity.setTempMorn( Math.round(old.getTemp().getMorn()) );
 
-                dayEntity.setPressure( old.getPressure() );
+                dayEntity.setPressure( (int)Math.round(old.getPressure()) );
                 dayEntity.setHumidity( old.getHumidity() );
                 dayEntity.setWeatherMain( old.getWeather()[0].getMain() );
                 dayEntity.setWeatherDescription( old.getWeather()[0].getDescription() );
-                dayEntity.setWindSpeed( old.getSpeed() );
+                dayEntity.setWindSpeed( (int)Math.round(old.getSpeed()) );
                 dayEntity.setWindDirection( old.getDeg() );
                 dayEntity.setCloudiness( old.getClouds() );
 

@@ -8,6 +8,9 @@ import io.realm.annotations.Required;
  * Created by shereen on 11/9/18
  */
 
+
+//not used
+
 public class Task extends RealmObject {
 
     @Required

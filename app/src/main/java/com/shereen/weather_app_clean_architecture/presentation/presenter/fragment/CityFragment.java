@@ -66,10 +66,16 @@ public class CityFragment extends BaseFragment {
                         new RecyclerItemClickListener.OnItemClickListener() {
                             @Override public void onItemClick(View view, int position) {
                                 Toast.makeText(getActivity(), "on Click "+cityEntities.get(position).getCity(), Toast.LENGTH_SHORT).show();
+                                if(mListener != null){
+                                    mListener.openMoreInformation(cityEntities.get(position).getCityId());
+                                }
                             }
 
                             @Override public void onLongItemClick(View view, int position) {
                                 Toast.makeText(getActivity(), "on Long Click "+cityEntities.get(position).getCity(), Toast.LENGTH_SHORT).show();
+                                if(mListener != null){
+                                    mListener.openMoreInformation(cityEntities.get(position).getCityId());
+                                }
                             }
                         })
         );
@@ -105,6 +111,6 @@ public class CityFragment extends BaseFragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         //void onFragmentInteraction(Uri uri);
-        void openMoreInformation(String cityId);
+        void openMoreInformation(int cityId);
     }
 }

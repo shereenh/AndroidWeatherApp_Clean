@@ -4,7 +4,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.shereen.weather_app_clean_architecture.R;
@@ -53,7 +52,7 @@ public class DayAdapter extends RealmRecyclerViewAdapter<DayEntity, DayAdapter.M
         View itemView;
 
         itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.city_item, parent, false);
+                .inflate(R.layout.day_item, parent, false);
 
         System.out.println("445566: list used");
 
@@ -64,6 +63,7 @@ public class DayAdapter extends RealmRecyclerViewAdapter<DayEntity, DayAdapter.M
     public void onBindViewHolder(MyViewHolder holder, int position) {
 
         DayEntity dayEntity = dayEntities.get(position);
+        System.out.println("ValueL: "+dayEntity.getTempDay());
 
         holder.day.setText( Double.toString(dayEntity.getTempDay()) );
         holder.min.setText(Double.toString(dayEntity.getTempMin()));
