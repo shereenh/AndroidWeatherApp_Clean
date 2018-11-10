@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/current"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.presenter.fragment.AutocompleteFragment">
+
+    <LinearLayout
+        android:id="@+id/autoLayout"
+        android:orientation="horizontal"
+        android:paddingTop="4dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="6dp"
+        android:layout_marginStart="5dp"
+        android:background="@drawable/customborder"
+        android:layout_width="0dp"
+        android:layout_weight="5"
+        android:layout_height="wrap_content">
+
+        <AutoCompleteTextView
+            android:id="@+id/city_name"
+            android:layout_marginTop="5dp"
+            android:layout_width="0dp"
+            android:layout_weight="5"
+            android:hint="@string/enterCityHint"
+            android:textColorHint="@color/gray3"
+            android:theme="@style/Autocomplete"
+            android:paddingTop="1dp"
+            android:paddingBottom="6dp"
+            android:textColor="@android:color/white"
+            android:textSize="18sp"
+            android:layout_height="30dp"
+            android:layout_marginStart="5dp" />
+
+        <ImageButton
+            android:id="@+id/getWeather"
+            android:layout_marginTop="5dp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="50dp"
+            android:src="@drawable/add"
+            android:paddingBottom="24dp"
+            android:layout_marginBottom="16dp"
+            android:paddingTop="0dp"
+            android:scaleType="fitCenter"
+            android:layout_gravity="top"
+            style="@style/Widget.AppCompat.Button.Borderless" />
+
+    </LinearLayout>
+
+
+</LinearLayout>
