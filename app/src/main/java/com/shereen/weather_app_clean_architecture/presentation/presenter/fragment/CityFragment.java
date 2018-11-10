@@ -1,12 +1,9 @@
 package com.shereen.weather_app_clean_architecture.presentation.presenter.fragment;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +14,6 @@ import com.shereen.weather_app_clean_architecture.domain.entity.CityEntity;
 import com.shereen.weather_app_clean_architecture.presentation.presenter.adapter.CityAdapter;
 import com.shereen.weather_app_clean_architecture.presentation.presenter.fragment.helper.RecyclerItemClickListener;
 
-import io.realm.OrderedRealmCollection;
 import io.realm.Realm;
 import io.realm.RealmResults;
 
@@ -48,7 +44,7 @@ public class CityFragment extends BaseFragment {
                              Bundle savedInstanceState) {
 
         realm = Realm.getDefaultInstance();
-        rootView = inflater.inflate(R.layout.fragment_weather_list, container, false);
+        rootView = inflater.inflate(R.layout.fragment_city, container, false);
 
         cityEntities = realm.where(CityEntity.class).findAll();
 
@@ -69,11 +65,11 @@ public class CityFragment extends BaseFragment {
                 new RecyclerItemClickListener(getActivity(), recyclerView ,
                         new RecyclerItemClickListener.OnItemClickListener() {
                             @Override public void onItemClick(View view, int position) {
-                                Toast.makeText(getActivity(), "on Click ", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getActivity(), "on Click "+cityEntities.get(position).getCity(), Toast.LENGTH_SHORT).show();
                             }
 
                             @Override public void onLongItemClick(View view, int position) {
-                                Toast.makeText(getActivity(), "on Long Click ", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getActivity(), "on Long Click "+cityEntities.get(position).getCity(), Toast.LENGTH_SHORT).show();
                             }
                         })
         );
@@ -109,5 +105,6 @@ public class CityFragment extends BaseFragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         //void onFragmentInteraction(Uri uri);
+        void openMoreInformation(String cityId);
     }
 }

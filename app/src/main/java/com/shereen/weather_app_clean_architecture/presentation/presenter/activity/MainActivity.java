@@ -117,5 +117,9 @@ public class MainActivity extends BaseActivity implements
         System.out.println(mes);
     }
 
+    @Override
+    public void openMoreInformation(String cityId){
+        System.out.println("going to call");
+    }
 
 }

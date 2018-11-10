@@ -10,9 +10,10 @@ public class Constants {
     public static final String PLACES_API_BASE = "https://maps.googleapis.com/maps/api/place";
     public static final String TYPE_AUTOCOMPLETE = "/autocomplete";
     public static final String OUT_JSON = "/json";
-    public static final String API_KEY = "AIzaSyDUXAYlWMiWxDRgnekL_3zYehT0Avz0N50";
+    public static final String PLACES_API_KEY = "AIzaSyDUXAYlWMiWxDRgnekL_3zYehT0Avz0N50";
 
     //Open Weather Maps API
+    public static final String WEATHER_API_KEY = "f8fdae74c29544baebdb927d392c5538";
 
 
     //realm

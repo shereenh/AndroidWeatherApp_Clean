@@ -1,5 +1,6 @@
 package com.shereen.weather_app_clean_architecture.data.net;
 
+import com.shereen.weather_app_clean_architecture.data.Constants;
 import com.shereen.weather_app_clean_architecture.data.entity.WeatherEntity;
 
 import io.reactivex.Observable;
@@ -12,9 +13,9 @@ import retrofit2.http.Query;
 
 public interface WeatherService {
 
-    @GET("data/2.5/forecast/daily?q=32789&mode=json&units=metric&cnt=14&appid=f8fdae74c29544baebdb927d392c5538")
+    @GET("data/2.5/forecast/daily?q=32789&mode=json&units=metric&cnt=14&appid="+Constants.WEATHER_API_KEY)
     Observable<WeatherEntity> getWeatherEntity();
 
     @GET("data/2.5/forecast/daily?mode=json&units=metric&cnt=14&appid=f8fdae74c29544baebdb927d392c5538")
-    Observable<WeatherEntity> getCityWeatherEntity(@Query("q") String cityName);
+    Observable<WeatherEntity> getCityWeatherEntity(@Query("q") String cityName, @Query("appid") String api_key);
 }

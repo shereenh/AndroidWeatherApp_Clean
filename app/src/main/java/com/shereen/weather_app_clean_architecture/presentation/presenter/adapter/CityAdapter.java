@@ -75,6 +75,7 @@ public class CityAdapter
 
         String wea = dayEntity.getWeatherMain();
         holder.mainW.setText( wea );
+        holder.temp.setText( Double.toString(dayEntity.getTempDay()));
         holder.press.setText("Pr: "+Double.toString(dayEntity.getPressure() )+" hPa");
         holder.humidity.setText("Hm: "+Integer.toString(dayEntity.getHumidity())+"%");
         holder.speedW.setText("Wn: "+Double.toString(dayEntity.getWindSpeed())+" mps");

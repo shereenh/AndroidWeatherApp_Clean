@@ -54,7 +54,7 @@ public class AutocompleteFragment extends BaseFragment {
         }
 
 
-        if (mThreadHandler == null && connected) {
+        if (mThreadHandler == null) {
             // Initialize and start the HandlerThread
             // which is basically a Thread with a Looper
             // attached (hence a MessageQueue)

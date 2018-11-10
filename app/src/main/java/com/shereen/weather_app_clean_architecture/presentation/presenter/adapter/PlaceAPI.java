@@ -35,7 +35,7 @@ public class PlaceAPI {
 
         try {
             StringBuilder sb = new StringBuilder(Constants.PLACES_API_BASE + Constants.TYPE_AUTOCOMPLETE + Constants.OUT_JSON);
-            sb.append("?key=" + Constants.API_KEY);
+            sb.append("?key=" + Constants.PLACES_API_KEY);
             sb.append("&types=(cities)");
 
             sb.append("&components=country:us");
